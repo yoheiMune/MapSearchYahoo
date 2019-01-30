@@ -111,13 +111,13 @@ extension ViewController: UISearchBarDelegate {
         }
         
         // 検索条件を作成します.
-        let params = [
+        let params: [String: Any] = [
             "appid" : API_KEY,
             "query" : searchTerm,
-            "lat" : String(format: "%.06f", self.mapView.region.center.latitude),
-            "lon" : String(format: "%.06f", self.mapView.region.center.longitude),
-            "dist" : "3",  // 周辺3kmを検索
-            "results" : "10"  // 最大10件
+            "lat" : self.mapView.region.center.latitude,
+            "lon" : self.mapView.region.center.longitude,
+            "dist" : 1,     // 周辺1kmを検索
+            "results" : 10  // 結果を最大10件取得
         ]
                 
         // Yahooローカル検索APIのエンドポイント.
