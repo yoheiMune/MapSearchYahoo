@@ -12,7 +12,7 @@ import CoreLocation
 import Alamofire
 import SWXMLHash
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
 
     // UI: マップ表示を行うView（Storyboardと連結）
     @IBOutlet weak var mapView: MKMapView!
@@ -60,11 +60,6 @@ class ViewController: UIViewController {
         // 位置情報の取得を開始.
         locationManager.startUpdatingLocation()
     }
-
-}
-
-// MARK: CLLocationManagerDelegate
-extension ViewController: CLLocationManagerDelegate {
     
     // ユーザーからの認可/不認可があった場合に呼び出されます.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -94,10 +89,6 @@ extension ViewController: CLLocationManagerDelegate {
             mapView.setRegion(region, animated: true)
         }
     }
-}
-
-// MARK: UISearchBarDelegate
-extension ViewController: UISearchBarDelegate {
     
     // 検索バーでユーザーが検索したときに呼び出されます.
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -152,10 +143,6 @@ extension ViewController: UISearchBarDelegate {
             }
         }
     }
-}
-
-// MARK: MkMapViewDelete
-extension ViewController: MKMapViewDelegate {
 
     // マップで、アノテーションがタップされた場合に呼び出されます.
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
